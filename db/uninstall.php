@@ -14,7 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die();
+/**
+ * Uninstall cleanup for local_oookltimenu.
+ *
+ * @package    local_oookltimenu
+ * @copyright  2026 OOOK
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 /**
  * Clean up LTI data created by local_oookltimenu.

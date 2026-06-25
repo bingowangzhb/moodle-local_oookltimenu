@@ -16,8 +16,6 @@
 
 namespace local_oookltimenu\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Admin setting for the managed LTI 1.3 tool.
  *
@@ -26,7 +24,6 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class admin_setting_lti_tool extends \admin_setting {
-
     /** @var string[] Config fields saved by this setting. */
     private const FIELDS = [
         'toolname',

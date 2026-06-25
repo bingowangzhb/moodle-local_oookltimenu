@@ -16,8 +16,6 @@
 
 namespace local_oookltimenu\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Creates and updates the site-level LTI tool used by the OOOK course menu.
  *
@@ -26,12 +24,13 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class lti_tool_manager {
-
     /** Plugin component name. */
     private const COMPONENT = 'local_oookltimenu';
 
-    /** LTI key type values used by mod_lti. */
+    /** LTI key type value for JWKS URLs. */
     public const KEYTYPE_KEYSET = 'JWK_KEYSET';
+
+    /** LTI key type value for public RSA keys. */
     public const KEYTYPE_RSA = 'RSA_KEY';
 
     /** Setting names stored in config_plugins. */
@@ -104,7 +103,7 @@ class lti_tool_manager {
         $redirects = preg_split('/\r\n|\r|\n/', (string)$config['redirectionuris']);
         $redirects = array_map('trim', $redirects);
         $redirects = array_filter($redirects, static fn($value) => $value !== '');
-        $config['redirectionuris'] = implode("\n", array_map(static function(string $url): string {
+        $config['redirectionuris'] = implode("\n", array_map(static function (string $url): string {
             return clean_param($url, PARAM_URL);
         }, $redirects));
 

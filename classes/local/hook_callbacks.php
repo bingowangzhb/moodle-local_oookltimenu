@@ -16,10 +16,12 @@
 
 namespace local_oookltimenu\local;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Hook callbacks for local_oookltimenu.
+ *
+ * @package    local_oookltimenu
+ * @copyright  2026 OOOK
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class hook_callbacks {
     /** @var string Marker name for auto-created hidden LTI activities. */
@@ -188,7 +190,7 @@ class hook_callbacks {
                 $selectorcss . " {\n    display: none !important;\n}\n" .
                 '</style>';
         }
-        $cmidscsv = implode(',', array_map(static function(int $id): string {
+        $cmidscsv = implode(',', array_map(static function (int $id): string {
             return (string)$id;
         }, $cmids));
         $scripturl = (new \moodle_url('/local/oookltimenu/source/js/hide_auto_activity.js'))->out(false);
@@ -196,7 +198,8 @@ class hook_callbacks {
         self::$hidemarkupinjected = true;
 
         return $stylehtml .
-            '<div id="local-oookltimenu-hidecfg" data-cmids="' . s($cmidscsv) . '" data-marker="' . s(self::AUTO_INSTANCE_NAME) . '"></div>' .
+            '<div id="local-oookltimenu-hidecfg" data-cmids="' . s($cmidscsv) .
+            '" data-marker="' . s(self::AUTO_INSTANCE_NAME) . '"></div>' .
             '<script src="' . s($scripturl) . '"></script>';
     }
 
@@ -345,7 +348,7 @@ class hook_callbacks {
             return [];
         }
 
-        return array_map(static function($r): int {
+        return array_map(static function ($r): int {
             return (int)$r->id;
         }, array_values($records));
     }
@@ -353,7 +356,8 @@ class hook_callbacks {
     /**
      * Ensure course module is visible but not shown on course page.
      *
-     * @param int $cmid
+     * @param int $cmid Course module id.
+     * @param int $courseid Course id.
      * @return bool
      */
     private static function force_visible_not_on_coursepage(int $cmid, int $courseid): bool {

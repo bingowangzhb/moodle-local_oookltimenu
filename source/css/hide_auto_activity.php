@@ -14,6 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Dynamic CSS for hiding helper LTI activities.
+ *
+ * @package    local_oookltimenu
+ * @copyright  2026 OOOK
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 define('NO_DEBUG_DISPLAY', true);
 require_once(__DIR__ . '/../../../../config.php');
 
