@@ -18,7 +18,7 @@
  * Course menu page that embeds the managed LTI launch.
  *
  * @package    local_oookltimenu
- * @copyright  2026 OOOK
+ * @copyright  2026 ambow
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

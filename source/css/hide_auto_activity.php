@@ -18,7 +18,7 @@
  * Dynamic CSS for hiding helper LTI activities.
  *
  * @package    local_oookltimenu
- * @copyright  2026 OOOK
+ * @copyright  2026 ambow
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

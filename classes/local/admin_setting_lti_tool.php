@@ -20,7 +20,7 @@ namespace local_oookltimenu\local;
  * Admin setting for the managed LTI 1.3 tool.
  *
  * @package    local_oookltimenu
- * @copyright  2026 OOOK
+ * @copyright  2026 ambow
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class admin_setting_lti_tool extends \admin_setting {

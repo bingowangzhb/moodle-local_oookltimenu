@@ -26,7 +26,7 @@ use core_privacy\local\request\userlist;
  * Privacy Subsystem implementation for local_oookltimenu.
  *
  * @package    local_oookltimenu
- * @copyright  2026 OOOK
+ * @copyright  2026 ambow
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements

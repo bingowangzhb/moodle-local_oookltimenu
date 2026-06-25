@@ -20,7 +20,7 @@ namespace local_oookltimenu\local;
  * Creates and updates the site-level LTI tool used by the OOOK course menu.
  *
  * @package    local_oookltimenu
- * @copyright  2026 OOOK
+ * @copyright  2026 ambow
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class lti_tool_manager {
