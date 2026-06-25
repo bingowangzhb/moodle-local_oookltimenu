@@ -1,4 +1,5 @@
 .idea/
 *.iml
+dist/
 .DS_Store
 Thumbs.db
