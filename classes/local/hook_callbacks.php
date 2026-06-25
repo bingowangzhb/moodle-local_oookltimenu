@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_oookltimenuauto\local;
+namespace local_oookltimenu\local;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Hook callbacks for local_oookltimenuauto.
+ * Hook callbacks for local_oookltimenu.
  */
 class hook_callbacks {
     /** @var string Marker name for auto-created hidden LTI activities. */
@@ -48,7 +48,7 @@ class hook_callbacks {
 
         // Keep helper activities hidden even when the OOOK navigation entry is disabled.
         if (!self::$hidecssrequired && !empty($PAGE)) {
-            $cssurl = new \moodle_url('/local/oookltimenuauto/source/css/hide_auto_activity.php', [
+            $cssurl = new \moodle_url('/local/oookltimenu/source/css/hide_auto_activity.php', [
                 'courseid' => (int)$COURSE->id,
             ]);
             $PAGE->requires->css($cssurl);
@@ -66,11 +66,11 @@ class hook_callbacks {
 
         $secondarynav = $hook->get_secondaryview();
         $node = \navigation_node::create(
-            get_string('menuitemdefault', 'local_oookltimenuauto'),
+            get_string('menuitemdefault', 'local_oookltimenu'),
             $url,
             \navigation_node::TYPE_SETTING,
             null,
-            'oookltimenuauto'
+            'oookltimenu'
         );
         $node->set_force_into_more_menu(false);
 
@@ -98,7 +98,7 @@ class hook_callbacks {
      * @return bool
      */
     public static function is_nav_enabled(): bool {
-        $enabled = get_config('local_oookltimenuauto', 'navenabled');
+        $enabled = get_config('local_oookltimenu', 'navenabled');
         return $enabled === false || (int)$enabled === 1;
     }
 
@@ -113,15 +113,15 @@ class hook_callbacks {
             return null;
         }
 
-        $targettypeid = (int)get_config('local_oookltimenuauto', 'targettypeid');
+        $targettypeid = (int)get_config('local_oookltimenu', 'targettypeid');
         if ($targettypeid <= 0) {
             if (!has_capability('moodle/site:config', \context_system::instance())) {
                 return null;
             }
-            return new \moodle_url('/admin/settings.php', ['section' => 'local_oookltimenuauto']);
+            return new \moodle_url('/admin/settings.php', ['section' => 'local_oookltimenu']);
         }
 
-        return new \moodle_url('/local/oookltimenuauto/page.php', [
+        return new \moodle_url('/local/oookltimenu/page.php', [
             'courseid' => $courseid,
             'typeid' => $targettypeid,
         ]);
@@ -191,12 +191,12 @@ class hook_callbacks {
         $cmidscsv = implode(',', array_map(static function(int $id): string {
             return (string)$id;
         }, $cmids));
-        $scripturl = (new \moodle_url('/local/oookltimenuauto/source/js/hide_auto_activity.js'))->out(false);
+        $scripturl = (new \moodle_url('/local/oookltimenu/source/js/hide_auto_activity.js'))->out(false);
 
         self::$hidemarkupinjected = true;
 
         return $stylehtml .
-            '<div id="local-oookltimenuauto-hidecfg" data-cmids="' . s($cmidscsv) . '" data-marker="' . s(self::AUTO_INSTANCE_NAME) . '"></div>' .
+            '<div id="local-oookltimenu-hidecfg" data-cmids="' . s($cmidscsv) . '" data-marker="' . s(self::AUTO_INSTANCE_NAME) . '"></div>' .
             '<script src="' . s($scripturl) . '"></script>';
     }
 
@@ -211,11 +211,11 @@ class hook_callbacks {
         global $DB;
 
         if ($typeid <= 0) {
-            throw new \moodle_exception('missingtypeidconfig', 'local_oookltimenuauto');
+            throw new \moodle_exception('missingtypeidconfig', 'local_oookltimenu');
         }
 
         if (!$DB->record_exists('lti_types', ['id' => $typeid])) {
-            throw new \moodle_exception('invalidtooltypeid', 'local_oookltimenuauto');
+            throw new \moodle_exception('invalidtooltypeid', 'local_oookltimenu');
         }
 
         $existing = self::find_hidden_lti_cmid($courseid, $typeid);
@@ -239,12 +239,12 @@ class hook_callbacks {
         }
 
         if (!$cancreate) {
-            throw new \moodle_exception('autoltiinitrequired', 'local_oookltimenuauto');
+            throw new \moodle_exception('autoltiinitrequired', 'local_oookltimenu');
         }
 
         $cmid = self::create_hidden_lti_cmid($courseid, $typeid);
         if ($cmid <= 0) {
-            throw new \moodle_exception('autolticreatefailed', 'local_oookltimenuauto');
+            throw new \moodle_exception('autolticreatefailed', 'local_oookltimenu');
         }
         self::ensure_not_on_coursepage($cmid, $courseid);
         return $cmid;

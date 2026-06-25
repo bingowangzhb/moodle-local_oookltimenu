@@ -17,13 +17,13 @@
 defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
-    $settings = new admin_settingpage('local_oookltimenuauto', get_string('pluginname', 'local_oookltimenuauto'));
+    $settings = new admin_settingpage('local_oookltimenu', get_string('pluginname', 'local_oookltimenu'));
     $ADMIN->add('localplugins', $settings);
 
-    $settings->add(new \local_oookltimenuauto\local\admin_setting_lti_tool(
-        'local_oookltimenuauto/ltitoolconfig',
-        get_string('ltitoolconfig', 'local_oookltimenuauto'),
-        get_string('ltitoolconfig_desc', 'local_oookltimenuauto'),
+    $settings->add(new \local_oookltimenu\local\admin_setting_lti_tool(
+        'local_oookltimenu/ltitoolconfig',
+        get_string('ltitoolconfig', 'local_oookltimenu'),
+        get_string('ltitoolconfig_desc', 'local_oookltimenu'),
         []
     ));
 }

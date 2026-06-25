@@ -21,6 +21,6 @@ defined('MOODLE_INTERNAL') || die();
  *
  * @return string
  */
-function local_oookltimenuauto_before_standard_top_of_body_html(): string {
-    return \local_oookltimenuauto\local\hook_callbacks::get_hide_auto_activity_markup_for_current_page();
+function local_oookltimenu_before_standard_top_of_body_html(): string {
+    return \local_oookltimenu\local\hook_callbacks::get_hide_auto_activity_markup_for_current_page();
 }

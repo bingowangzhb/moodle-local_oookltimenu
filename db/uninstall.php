@@ -17,17 +17,17 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Clean up LTI data created by local_oookltimenuauto.
+ * Clean up LTI data created by local_oookltimenu.
  *
  * @return bool
  */
-function xmldb_local_oookltimenuauto_uninstall(): bool {
+function xmldb_local_oookltimenu_uninstall(): bool {
     global $CFG, $DB;
 
-    $typeids = local_oookltimenuauto_uninstall_get_managed_typeids();
-    $success = local_oookltimenuauto_uninstall_delete_auto_lti_activities();
+    $typeids = local_oookltimenu_uninstall_get_managed_typeids();
+    $success = local_oookltimenu_uninstall_delete_auto_lti_activities();
 
-    if (!empty($typeids) && local_oookltimenuauto_uninstall_lti_tables_exist()) {
+    if (!empty($typeids) && local_oookltimenu_uninstall_lti_tables_exist()) {
         require_once($CFG->dirroot . '/mod/lti/locallib.php');
 
         foreach ($typeids as $typeid) {
@@ -45,16 +45,16 @@ function xmldb_local_oookltimenuauto_uninstall(): bool {
  *
  * @return int[]
  */
-function local_oookltimenuauto_uninstall_get_managed_typeids(): array {
+function local_oookltimenu_uninstall_get_managed_typeids(): array {
     global $DB;
 
     $typeids = [];
-    $targettypeid = (int)get_config('local_oookltimenuauto', 'targettypeid');
+    $targettypeid = (int)get_config('local_oookltimenu', 'targettypeid');
     if ($targettypeid > 0) {
         $typeids[$targettypeid] = $targettypeid;
     }
 
-    if (!local_oookltimenuauto_uninstall_lti_tables_exist()) {
+    if (!local_oookltimenu_uninstall_lti_tables_exist()) {
         return array_values($typeids);
     }
 
@@ -64,7 +64,7 @@ function local_oookltimenuauto_uninstall_get_managed_typeids(): array {
              WHERE lti.typeid > 0
                AND (lti.name = :name OR {$namelike})";
     $records = $DB->get_records_sql($sql, [
-        'name' => local_oookltimenuauto_uninstall_auto_instance_name(),
+        'name' => local_oookltimenu_uninstall_auto_instance_name(),
         'namelike' => '%OOOK LTI AUTO%',
     ]);
 
@@ -83,10 +83,10 @@ function local_oookltimenuauto_uninstall_get_managed_typeids(): array {
  *
  * @return bool
  */
-function local_oookltimenuauto_uninstall_delete_auto_lti_activities(): bool {
+function local_oookltimenu_uninstall_delete_auto_lti_activities(): bool {
     global $DB;
 
-    if (!local_oookltimenuauto_uninstall_lti_tables_exist()) {
+    if (!local_oookltimenu_uninstall_lti_tables_exist()) {
         return true;
     }
 
@@ -101,14 +101,14 @@ function local_oookltimenuauto_uninstall_delete_auto_lti_activities(): bool {
           ORDER BY cm.id ASC";
     $cms = $DB->get_records_sql($sql, [
         'modname' => 'lti',
-        'name' => local_oookltimenuauto_uninstall_auto_instance_name(),
+        'name' => local_oookltimenu_uninstall_auto_instance_name(),
         'namelike' => '%OOOK LTI AUTO%',
     ]);
 
     $success = true;
     foreach ($cms as $cm) {
         try {
-            local_oookltimenuauto_uninstall_delete_course_module((int)$cm->id, (int)$cm->course);
+            local_oookltimenu_uninstall_delete_course_module((int)$cm->id, (int)$cm->course);
         } catch (Throwable $e) {
             $success = false;
             debugging(
@@ -128,7 +128,7 @@ function local_oookltimenuauto_uninstall_delete_auto_lti_activities(): bool {
  * @param int $courseid Course id.
  * @return void
  */
-function local_oookltimenuauto_uninstall_delete_course_module(int $cmid, int $courseid): void {
+function local_oookltimenu_uninstall_delete_course_module(int $cmid, int $courseid): void {
     global $CFG;
 
     require_once($CFG->dirroot . '/course/lib.php');
@@ -146,7 +146,7 @@ function local_oookltimenuauto_uninstall_delete_course_module(int $cmid, int $co
  *
  * @return bool
  */
-function local_oookltimenuauto_uninstall_lti_tables_exist(): bool {
+function local_oookltimenu_uninstall_lti_tables_exist(): bool {
     global $DB;
 
     $dbman = $DB->get_manager();
@@ -163,6 +163,6 @@ function local_oookltimenuauto_uninstall_lti_tables_exist(): bool {
  *
  * @return string
  */
-function local_oookltimenuauto_uninstall_auto_instance_name(): string {
+function local_oookltimenu_uninstall_auto_instance_name(): string {
     return '[OOOK LTI AUTO]';
 }

@@ -1,4 +1,4 @@
-# local_oookltimenuauto
+# local_oookltimenu
 
 Adds an `OOOK` item into course secondary navigation and launches a managed LTI 1.3 tool in an iframe.
 

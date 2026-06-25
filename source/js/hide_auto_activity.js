@@ -12,7 +12,7 @@
     }
     window.localOookLtiMenuHideAutoLoaded = true;
 
-    var cfg = document.getElementById('local-oookltimenuauto-hidecfg');
+    var cfg = document.getElementById('local-oookltimenu-hidecfg');
     if (!cfg) {
         return;
     }

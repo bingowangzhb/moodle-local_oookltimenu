@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_oookltimenuauto\privacy;
+namespace local_oookltimenu\privacy;
 
 use core_privacy\local\metadata\collection;
 use core_privacy\local\request\approved_contextlist;
@@ -25,9 +25,9 @@ use core_privacy\local\request\userlist;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Privacy Subsystem implementation for local_oookltimenuauto.
+ * Privacy Subsystem implementation for local_oookltimenu.
  *
- * @package    local_oookltimenuauto
+ * @package    local_oookltimenu
  * @copyright  2026 OOOK
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

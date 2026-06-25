@@ -14,21 +14,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_oookltimenuauto\local;
+namespace local_oookltimenu\local;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * Creates and updates the site-level LTI tool used by the OOOK course menu.
  *
- * @package    local_oookltimenuauto
+ * @package    local_oookltimenu
  * @copyright  2026 OOOK
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class lti_tool_manager {
 
     /** Plugin component name. */
-    private const COMPONENT = 'local_oookltimenuauto';
+    private const COMPONENT = 'local_oookltimenu';
 
     /** LTI key type values used by mod_lti. */
     public const KEYTYPE_KEYSET = 'JWK_KEYSET';

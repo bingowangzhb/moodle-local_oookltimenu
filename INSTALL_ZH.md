@@ -1,6 +1,6 @@
-# OOOK 菜单插件安装说明（`local_oookltimenuauto`）
+# OOOK 菜单插件安装说明（`local_oookltimenu`）
 
-本文说明如何在 Moodle 中安装并启用 `local_oookltimenuauto`，将 LTI 工具以课程顶部菜单 `OOOK` 的方式接入。
+本文说明如何在 Moodle 中安装并启用 `local_oookltimenu`，将 LTI 工具以课程顶部菜单 `OOOK` 的方式接入。
 
 ## 1. 前置条件
 
@@ -15,7 +15,7 @@
 ## 2. 安装插件
 
 1. 进入 Moodle 后台：`Site administration -> Plugins -> Install plugins`
-2. 上传安装包：`local_oookltimenuauto_moodle.zip`
+2. 上传安装包：`local_oookltimenu_moodle.zip`
 3. 点击安装并完成数据库升级
 4. 安装后执行一次：`Site administration -> Development -> Purge all caches`
 

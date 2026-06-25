@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_oookltimenuauto\local;
+namespace local_oookltimenu\local;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * Admin setting for the managed LTI 1.3 tool.
  *
- * @package    local_oookltimenuauto
+ * @package    local_oookltimenu
  * @copyright  2026 OOOK
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -61,7 +61,7 @@ class admin_setting_lti_tool extends \admin_setting {
      */
     public function write_setting($data) {
         if (!is_array($data)) {
-            return get_string('errorinvalidconfig', 'local_oookltimenuauto');
+            return get_string('errorinvalidconfig', 'local_oookltimenu');
         }
         if (empty($data)) {
             return '';
@@ -88,7 +88,7 @@ class admin_setting_lti_tool extends \admin_setting {
         try {
             $typeid = lti_tool_manager::sync_tool($config);
         } catch (\Throwable $e) {
-            return get_string('errorsyncfailed', 'local_oookltimenuauto', $e->getMessage());
+            return get_string('errorsyncfailed', 'local_oookltimenu', $e->getMessage());
         }
 
         foreach (self::FIELDS as $field) {
@@ -117,7 +117,7 @@ class admin_setting_lti_tool extends \admin_setting {
         $fullname = $this->get_full_name();
         $inputid = $this->get_id() . '_toolname';
 
-        $html = \html_writer::start_div('local-oookltimenuauto-settings');
+        $html = \html_writer::start_div('local-oookltimenu-settings');
         $html .= $this->text_input($fullname, 'toolname', $config['toolname'], true);
         $html .= $this->text_input($fullname, 'toolurl', $config['toolurl'], true);
         $html .= $this->textarea($fullname, 'tooldescription', $config['tooldescription'], false, 4);
@@ -202,8 +202,8 @@ class admin_setting_lti_tool extends \admin_setting {
      */
     private function select_keytype(string $fullname, string $value): string {
         $options = [
-            lti_tool_manager::KEYTYPE_KEYSET => get_string('keytypekeyset', 'local_oookltimenuauto'),
-            lti_tool_manager::KEYTYPE_RSA => get_string('keytypersa', 'local_oookltimenuauto'),
+            lti_tool_manager::KEYTYPE_KEYSET => get_string('keytypekeyset', 'local_oookltimenu'),
+            lti_tool_manager::KEYTYPE_RSA => get_string('keytypersa', 'local_oookltimenu'),
         ];
         return $this->field_row('keytype', \html_writer::select(
             $options,
@@ -226,10 +226,10 @@ class admin_setting_lti_tool extends \admin_setting {
      */
     private function select_launchcontainer(string $fullname, int $value): string {
         $options = [
-            2 => get_string('launchcontainerembed', 'local_oookltimenuauto'),
-            3 => get_string('launchcontainerembednoblocks', 'local_oookltimenuauto'),
-            4 => get_string('launchcontainernewwindow', 'local_oookltimenuauto'),
-            5 => get_string('launchcontainerexistingwindow', 'local_oookltimenuauto'),
+            2 => get_string('launchcontainerembed', 'local_oookltimenu'),
+            3 => get_string('launchcontainerembednoblocks', 'local_oookltimenu'),
+            4 => get_string('launchcontainernewwindow', 'local_oookltimenu'),
+            5 => get_string('launchcontainerexistingwindow', 'local_oookltimenu'),
         ];
         return $this->field_row('launchcontainer', \html_writer::select(
             $options,
@@ -252,9 +252,9 @@ class admin_setting_lti_tool extends \admin_setting {
      */
     private function select_coursevisible(string $fullname, int $value): string {
         $options = [
-            0 => get_string('coursevisiblehidden', 'local_oookltimenuauto'),
-            1 => get_string('coursevisiblepreconfigured', 'local_oookltimenuauto'),
-            2 => get_string('coursevisibleactivitychooser', 'local_oookltimenuauto'),
+            0 => get_string('coursevisiblehidden', 'local_oookltimenu'),
+            1 => get_string('coursevisiblepreconfigured', 'local_oookltimenu'),
+            2 => get_string('coursevisibleactivitychooser', 'local_oookltimenu'),
         ];
         return $this->field_row('coursevisible', \html_writer::select(
             $options,
@@ -304,7 +304,7 @@ class admin_setting_lti_tool extends \admin_setting {
         $details = lti_tool_manager::get_platform_details();
         if (empty($details)) {
             return \html_writer::div(
-                get_string('platformdetailsmissing', 'local_oookltimenuauto'),
+                get_string('platformdetailsmissing', 'local_oookltimenu'),
                 'alert alert-info mt-3'
             );
         }
@@ -313,7 +313,7 @@ class admin_setting_lti_tool extends \admin_setting {
         $clientidhtml = '';
         if ($clientid !== '') {
             $clientidhtml = \html_writer::div(
-                \html_writer::tag('strong', get_string('clientidready', 'local_oookltimenuauto')) .
+                \html_writer::tag('strong', get_string('clientidready', 'local_oookltimenu')) .
                 \html_writer::tag('code', s((string)$clientid), ['class' => 'd-block mt-2']),
                 'alert alert-success mt-3'
             );
@@ -321,13 +321,13 @@ class admin_setting_lti_tool extends \admin_setting {
 
         $rows = '';
         foreach ($details as $key => $value) {
-            $rows .= \html_writer::tag('dt', get_string('platform_' . $key, 'local_oookltimenuauto'));
+            $rows .= \html_writer::tag('dt', get_string('platform_' . $key, 'local_oookltimenu'));
             $rows .= \html_writer::tag('dd', s((string)$value));
         }
 
         return $clientidhtml . \html_writer::div(
-            \html_writer::tag('h4', get_string('platformdetails', 'local_oookltimenuauto')) .
-            \html_writer::tag('dl', $rows, ['class' => 'local-oookltimenuauto-platformdetails']),
+            \html_writer::tag('h4', get_string('platformdetails', 'local_oookltimenu')) .
+            \html_writer::tag('dl', $rows, ['class' => 'local-oookltimenu-platformdetails']),
             'alert alert-secondary mt-3'
         );
     }
@@ -354,11 +354,11 @@ class admin_setting_lti_tool extends \admin_setting {
     private function field_row(string $field, string $element): string {
         $label = \html_writer::tag(
             'label',
-            get_string('setting_' . $field, 'local_oookltimenuauto'),
+            get_string('setting_' . $field, 'local_oookltimenu'),
             ['for' => $this->get_id() . '_' . $field, 'class' => 'form-label']
         );
         $help = \html_writer::div(
-            get_string('setting_' . $field . '_desc', 'local_oookltimenuauto'),
+            get_string('setting_' . $field . '_desc', 'local_oookltimenu'),
             'form-text'
         );
         return \html_writer::div($label . $element . $help, 'mb-3');

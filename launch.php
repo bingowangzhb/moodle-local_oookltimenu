@@ -26,4 +26,4 @@ $params = ['courseid' => $courseid];
 if ($typeid > 0) {
     $params['typeid'] = $typeid;
 }
-redirect(new moodle_url('/local/oookltimenuauto/page.php', $params));
+redirect(new moodle_url('/local/oookltimenu/page.php', $params));

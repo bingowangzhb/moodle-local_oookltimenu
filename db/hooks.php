@@ -19,12 +19,12 @@ defined('MOODLE_INTERNAL') || die();
 $callbacks = [
     [
         'hook' => core\hook\navigation\secondary_extend::class,
-        'callback' => 'local_oookltimenuauto\local\hook_callbacks::extend_secondary_navigation',
+        'callback' => 'local_oookltimenu\local\hook_callbacks::extend_secondary_navigation',
         'priority' => 0,
     ],
     [
         'hook' => core\hook\output\before_standard_top_of_body_html_generation::class,
-        'callback' => 'local_oookltimenuauto\local\hook_callbacks::hide_auto_activity_on_course_page',
+        'callback' => 'local_oookltimenu\local\hook_callbacks::hide_auto_activity_on_course_page',
         'priority' => 0,
     ],
 ];
