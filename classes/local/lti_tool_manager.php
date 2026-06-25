@@ -253,12 +253,12 @@ class lti_tool_manager {
     private static function get_defaults(): array {
         return [
             'toolname' => 'oook-lti13-tool',
-            'toolurl' => 'https://pre-api-lti.oook.cn/index',
-            'tooldescription' => 'This is LTI13 Tool',
-            'initiatelogin' => 'https://pre-api-lti.oook.cn/lti/login_initiation/moodle-cc',
-            'redirectionuris' => 'https://pre-api-lti.oook.cn/lti/login',
+            'toolurl' => '',
+            'tooldescription' => '',
+            'initiatelogin' => '',
+            'redirectionuris' => '',
             'keytype' => self::KEYTYPE_KEYSET,
-            'publickeyset' => 'https://pre-api-lti.oook.cn/jwks.json',
+            'publickeyset' => '',
             'publickey' => '',
             'coursevisible' => 1,
             'sendname' => 1,

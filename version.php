@@ -16,7 +16,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2026062504;
+$plugin->version   = 2026062505;
 $plugin->requires  = 2023100400; // Moodle 4.3+.
 $plugin->component = 'local_oookltimenu';
 $plugin->maturity  = MATURITY_STABLE;
